@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Projeto Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #tela-carregamento {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ddd3;
+            display: none;
+
+            &>div {
+                width: 75px;
+                height: 75px;
+                border-radius: 50%;
+                border: 7.5px solid #000;
+                border-bottom: 7.5px solid transparent;
+                animation: girar .5s linear infinite;
+            }
+        }
+
+        #tela-principal {
+            display: block;
+        }
+
+        #loader {
+            width: 25px;
+            height: 25px;
+            margin: 30px 20px;
+            border-radius: 50%;
+            border: 2.5px solid #000;
+            border-bottom: 2.5px solid transparent;
+            animation: girar .5s linear infinite;
+        }
+
+        @keyframes girar {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        p {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .olhos {
+            cursor: pointer;
+        }
+
+        .label-imagem {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            overflow: hidden;
+
+            & .imagens {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .img-bem-vindo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            background-color: #ccc;
+            border-radius: 50%;
+            overflow: hidden;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        #users-div {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .users {
+            display: inline-block;
+            cursor: pointer;
+            background-color: #eee;
+            border-radius: 1000px;
+
+            & p {
+                margin: 5px 10px;
+            }
+        }
+
+        .telas,
+        #nav-com-conta {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="telas" id="tela-carregamento">
+        <div></div>
+    </div>
+
+    <div class="telas" id="tela-principal">
+
+        <nav id="nav-sem-conta">
+            <p>Seja bem-vindo, visitante!</p>
+            <button class="entrar-btn">Entrar</button>
+            <button class="cadastrar-btn">Cadastrar</button>
+        </nav>
+
+        <nav id="nav-com-conta">
+            <p id="seja-bem-vindo"></p>
+            <button id="sair-btn">Sair</button>
+            <button id="editar-btn">Editar</button>
+        </nav>
+
+        <h1>Tela Principal</h1>
+        <h3>Usuários cadastrados:</h3>
+
+        <div id="loader"></div>
+        <div id="users-div"></div>
+
+    </div>
+
+    <div class="telas" id="tela-mostrar-user">
+        <nav>
+            <button class="voltar-btn">Voltar</button>
+        </nav>
+        <h2 id="username-p" style="margin: 25px 0 10px 0;"></h2>
+        <div class="label-imagem" id="img-div">
+            <img src="avatar.png" alt="" class="imagens">
+        </div>
+    </div>
+
+
+    <div class="telas" id="tela-entrar">
+
+        <nav>
+            <button class="voltar-btn">Voltar</button>
+        </nav>
+        <h1>Tela Entrar</h1>
+
+        <form action="" method="post" autocomplete="on" id="form-entrar">
+            <p>
+                <label for="email-entrar">Email:</label>
+                <input type="email" id="email-entrar" required>
+            </p>
+            <p>
+                <label for="password-entrar">Senha:</label>
+                <input type="password" id="password-entrar" class="password-inputs" required>
+                <span class="material-symbols-outlined olhos">visibility</span>
+            </p>
+            <p>
+                <input type="submit" value="Entrar">
+            </p>
+        </form>
+
+        <p>Ainda não tem uma conta? <a href="#" class="cadastrar-btn">Cadastrar</a></p>
+    </div>
+
+
+
+    <div class="telas" id="tela-cadastrar">
+
+        <nav>
+            <button class="voltar-btn">Voltar</button>
+        </nav>
+
+        <h1>Tela Cadastrar</h1>
+
+        <form action="" method="post" autocomplete="on" id="form-cadastrar">
+            <p>Foto de perfil: (somente .jpg, .jpeg, .png ou .webp)</p>
+            <p>
+                <label for="imagem-cadastrar" class="label-imagem">
+                    <img src="avatar.png" alt="" class="imagens">
+                </label>
+                <input type="file" name="" id="imagem-cadastrar" class="imagem-inputs" accept=".jpg, .jpeg, .png, .webp"
+                    style="display: none;">
+                </p>
+                <button type="button" class="remover-foto">Remover foto</button>
+            <p>
+                <label for="username-cadastrar">Nome de usuário:</label>
+                <input type="text" id="username-cadastrar" required minlength="3" maxlength="15"
+                    pattern="^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+                    title="O nome de usuário deve conter apenas caracteres alfanuméricos e hífens únicos, não pode começar ou terminar com um hífen, nem conter hífens consecutivos.">
+            </p>
+            <p>
+                <label for="email-cadastrar">Email:</label>
+                <input type="email" id="email-cadastrar" required pattern="^[^@]+@[^@]+\.[^@]{2,}$"
+                    title="Por favor, insira um email válido.">
+            </p>
+            <p>
+                <label for="password-cadastrar">Senha:</label>
+                <input type="password" id="password-cadastrar" class="password-inputs" required minlength="8"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                    title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e um caractere especial.">
+                <span class="material-symbols-outlined olhos">visibility</span>
+            </p>
+            <p>
+                <input type="submit" value="Cadastrar">
+            </p>
+        </form>
+
+        <p>Já tem uma conta? <a href="#" class="entrar-btn">Entrar</a></p>
+    </div>
+
+
+
+    <div class="telas" id="tela-editar">
+
+        <nav>
+            <button class="voltar-btn">Voltar</button>
+        </nav>
+
+        <h1>Tela Editar</h1>
+
+        <form action="" method="post" autocomplete="on" id="form-editar">
+            <p>Foto de perfil: (somente .jpg, .jpeg, .png ou .webp)</p>
+            <p>
+                <label for="imagem-editar" class="label-imagem">
+                    <img src="avatar.png" alt="" class="imagens">
+                </label>
+                <input type="file" name="" id="imagem-editar" class="imagem-inputs" accept=".jpg, .jpeg, .png, .webp"
+                    style="display: none;">
+            </p>
+            <button type="button" class="remover-foto">Remover foto</button>
+            <p>
+
+                <label for="username-editar">Nome de usuário:</label>
+                <input type="text" id="username-editar" required minlength="3" maxlength="15"
+                    pattern="^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+                    title="O nome de usuário deve conter apenas caracteres alfanuméricos e hífens únicos, não pode começar ou terminar com um hífen, nem conter hífens consecutivos.">
+            </p>
+            <p>
+                <label for="email-editar">Email:</label>
+                <input type="email" id="email-editar" required pattern="^[^@]+@[^@]+\.[^@]{2,}$"
+                    title="Por favor, insira um email válido.">
+            </p>
+            <p>
+                <label for="password-editar">Senha:</label>
+                <input type="password" id="password-editar" class="password-inputs" required minlength="8"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                    title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e um caractere especial.">
+                <span class="material-symbols-outlined olhos">visibility</span>
+            </p>
+            <p>
+                <input type="submit" value="Editar">
+            </p>
+        </form>
+
+        <p><a href="#" id="excluir-btn">Excluir</a> conta</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/telaMostrarUser.js"></script>
+    <script src="scripts/telaPrincipal.js"></script>
+    <script src="scripts/telaCadastrar.js"></script>
+    <script src="scripts/telaEntrar.js"></script>
+    <script src="scripts/telaEditar.js"></script>
+    <script src="scripts/img.js"></script>
+
+</body>
+
+</html>
