@@ -1,6 +1,6 @@
 // Tela principal
-//const API_URL = "https://backend-delta-lake.vercel.app";
-const API_URL = "http://localhost:3000";
+const API_URL = "https://backend-delta-lake.vercel.app";
+//const API_URL = "http://localhost:3000";
 const loader = document.querySelector("#loader");
 const usersDiv = document.querySelector("#users-div");
 const telaMostrarUser = document.querySelector("#tela-mostrar-user");
