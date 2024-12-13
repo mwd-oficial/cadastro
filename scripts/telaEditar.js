@@ -17,6 +17,7 @@ formEditar.addEventListener("submit", async function (event) {
     formData.append("email", emailEditar);
     formData.append("password", passwordEditar);
     formData.append("imagem", imagemEditar);
+
     formData.append("usernameCadastrado", usernameCadastrado);
     formData.append("emailCadastrado", emailCadastrado);
     formData.append("semFoto", semFoto);
@@ -50,10 +51,8 @@ formEditar.addEventListener("submit", async function (event) {
 async function excluirConta() {
     telaCarregamento.style.display = "flex";
     try {
-        const res = await axios.delete(`${API_URL}/excluir`, { 
-            username: username,
-            imagem: imagem
-        });
+        const res = await axios.delete(`${API_URL}/excluir`, { username: username });
+
         console.log(res.data);
         telaCarregamento.style.display = "none";
         setTimeout(() => {

@@ -16,6 +16,7 @@ formCadastrar.addEventListener("submit", async function (event) {
     formData.append("email", emailCadastrar);
     formData.append("password", passwordCadastrar);
     formData.append("imagem", imagemCadastrar);
+
     formData.append("semFoto", semFoto);
 
     try {
@@ -30,7 +31,7 @@ formCadastrar.addEventListener("submit", async function (event) {
         if (res.data.resultado) {
             username = usernameCadastrar;
             imagem = res.data.resultado.imagem;
-            console.log("res.data.resultado.imagem: " + res.data.resultado.imagem)
+            console.log("res.data.resultado.imagem: " + res.data.resultado.imagem);
             localStorage.setItem("email", JSON.stringify(emailCadastrar));
             localStorage.setItem("password", JSON.stringify(passwordCadastrar));
             setTimeout(userEntrado, 100);
