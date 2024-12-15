@@ -10,6 +10,7 @@ formCadastrar.addEventListener("submit", async function (event) {
     const passwordCadastrar = document.querySelector("#password-cadastrar").value;
     const imagemCadastrar = document.querySelector("#imagem-cadastrar").files[0];
     console.log("imagemCadastrar: " + imagemCadastrar)
+    console.log("password: "+ passwordCadastrar)
 
     const formData = new FormData();
     formData.append("username", usernameCadastrar);
