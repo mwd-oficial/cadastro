@@ -66,7 +66,8 @@ editarBtn.addEventListener("click", async () => {
     const passwordEditar = document.querySelector("#password-editar");
 
     try {
-        const res = await axios.post(`${API_URL}/pegarUserInfo`, { username: username })
+        console.log("usernameVar: " + usernameVar)
+        const res = await axios.post(`${API_URL}/pegarUserInfo`, { username: usernameVar })
         if (res.status === 200) {
             usernameCadastrado = res.data.username;
             emailCadastrado = res.data.email;

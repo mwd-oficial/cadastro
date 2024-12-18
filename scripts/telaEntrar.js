@@ -26,9 +26,9 @@ async function entrarUser() {
 
         if (res.data.emailEncontrado) {
             if (res.data.senhaCorreta) {
-                username = res.data.userData.username;
-                imagem = res.data.userData.imagem;
-                semFoto = imagem === ""
+                usernameVar = res.data.userData.username;
+                imagemVar = res.data.userData.imagem;
+                semFoto = imagemVar === ""
                 localStorage.setItem("email", JSON.stringify(emailEntrar));
                 localStorage.setItem("password", JSON.stringify(passwordEntrar));
 
@@ -62,12 +62,22 @@ async function entrarUser() {
 function userEntrado() {
     document.querySelector("#seja-bem-vindo").innerHTML = `
     Seja bem-vindo,
-    <span class="img-bem-vindo">
-        <img src="${imagem !== "" ? imagem : "avatar.png"}">
+    <span id="img-user-bem-vindo">
+        <span id="loader-bem-vindo"></span>
+        <img src="${imagemVar !== "" ? imagemVar : "avatar.png"}">
     </span>
-    @${username}
+    @${usernameVar}
     `;
+
+    const loaderBemVindo = document.querySelector("#loader-bem-vindo")
+    const imgBemVindo = document.querySelector("#img-user-bem-vindo > img");
+    loaderBemVindo.style.opacity = 1;
+    imgBemVindo.style.opacity = 0; 
+    imgBemVindo.addEventListener("load", () => {
+        loaderBemVindo.style.opacity = 0;
+        imgBemVindo.style.opacity = 1;
+    });
     irTelaPrincipal();
     navComConta.style.display = "block";
     navSemConta.style.display = "none";
-};
+}

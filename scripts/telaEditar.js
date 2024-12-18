@@ -9,7 +9,7 @@ formEditar.addEventListener("submit", async function (event) {
     const passwordEditar = document.querySelector("#password-editar").value;
     const imagemEditar = document.querySelector("#imagem-editar").files[0];
 
-    const user = await axios.post(`${API_URL}/pegarUserInfo`, { username: username })
+    const user = await axios.post(`${API_URL}/pegarUserInfo`, { username: usernameVar })
     const userId = user.data._id
 
     const formData = new FormData();
@@ -33,9 +33,9 @@ formEditar.addEventListener("submit", async function (event) {
         telaCarregamento.style.display = "none";
         setTimeout(() => { alert(res.data.msg); }, 100);
         if (res.data.resultado) {
-            username = usernameEditar;
-            imagem = res.data.resultado.imagem !== "" ? `${res.data.resultado.imagem}?${new Date().getTime()}` : "";
-            console.log("imagem: " + imagem)
+            usernameVar = usernameEditar;
+            imagemVar = res.data.resultado.imagem !== "" ? `${res.data.resultado.imagem}?${new Date().getTime()}` : "";
+            console.log("imagem: " + imagemVar)
             localStorage.setItem("email", JSON.stringify(emailEditar));
             localStorage.setItem("password", JSON.stringify(passwordEditar));
             setTimeout(userEntrado, 100);
@@ -51,8 +51,8 @@ formEditar.addEventListener("submit", async function (event) {
 async function excluirConta() {
     telaCarregamento.style.display = "flex";
     try {
-        const res = await axios.delete(`${API_URL}/excluir`, { username: username });
-
+        const res = await axios.delete(`${API_URL}/excluir`, { data: { username: usernameVar } });
+        console.log("username: " + usernameVar)
         console.log(res.data);
         telaCarregamento.style.display = "none";
         setTimeout(() => {

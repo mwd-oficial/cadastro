@@ -1,5 +1,5 @@
 // Tela cadastrar
-var username, imagem;
+var usernameVar, imagemVar;
 
 formCadastrar.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -30,8 +30,8 @@ formCadastrar.addEventListener("submit", async function (event) {
         telaCarregamento.style.display = "none";
         setTimeout(() => { alert(res.data.msg); }, 100);
         if (res.data.resultado) {
-            username = usernameCadastrar;
-            imagem = res.data.resultado.imagem;
+            usernameVar = usernameCadastrar;
+            imagemVar = res.data.resultado.imagem;
             console.log("res.data.resultado.imagem: " + res.data.resultado.imagem);
             localStorage.setItem("email", JSON.stringify(emailCadastrar));
             localStorage.setItem("password", JSON.stringify(passwordCadastrar));

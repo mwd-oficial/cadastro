@@ -48,6 +48,19 @@
             border-bottom: 2.5px solid transparent;
             animation: girar .5s linear infinite;
         }
+        
+        .loader-img, #loader-bem-vindo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #000;
+            border-bottom: 1px solid transparent;
+            animation: girar .5s linear infinite;
+        }
 
         @keyframes girar {
             0% {
@@ -88,23 +101,6 @@
             }
         }
 
-        .img-bem-vindo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 25px;
-            height: 25px;
-            background-color: #ccc;
-            border-radius: 50%;
-            overflow: hidden;
-
-            & img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-        }
-
         #users-div {
             display: flex;
             justify-content: center;
@@ -124,6 +120,25 @@
             }
         }
 
+        .img-users, #img-user-bem-vindo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 25px;
+            height: 25px;
+            background-color: #ccc;
+            border-radius: 50%;
+            overflow: hidden;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                z-index: 1;
+            }
+        }
+
         .telas,
         #nav-com-conta {
             display: none;
@@ -137,7 +152,7 @@
     </div>
 
     <div class="telas" id="tela-principal">
-
+        
         <nav id="nav-sem-conta">
             <p>Seja bem-vindo, visitante!</p>
             <button class="entrar-btn">Entrar</button>

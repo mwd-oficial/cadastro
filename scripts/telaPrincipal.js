@@ -11,25 +11,36 @@ async function exibirUsers() {
     loader.style.display = "block";
     try {
         const res = await axios.get(`${API_URL}/users`);
-        res.data.forEach(user => user.imagem = user.imagem !== "" ? `${user.imagem}?${new Date().getTime()}` : "" );
+        res.data.forEach(user => user.imagem = user.imagem !== "" ? `${user.imagem}?${new Date().getTime()}` : "");
         const usersHTML = res.data.map((user, i) => `
-                <div class="users" data-index="${i}"> 
-                    <p>
-                        <span class="img-bem-vindo">
-                            <img src="${user.imagem !== "" ? user.imagem : "avatar.png"}">
-                        </span>
-                        @${user.username}
-                    </p> 
-                </div> 
-                `).join('');
+        <div class="users" data-index="${i}"> 
+            <p>
+                <span class="img-users">
+                    <span class="loader-img"></span>
+                    <img src="${user.imagem !== "" ? user.imagem : "avatar.png"}">
+                </span>
+                @${user.username}
+            </p> 
+        </div> 
+        `).join('');
         usersDiv.innerHTML = usersHTML;
         loader.style.display = "none";
 
+        const loaderImg = document.querySelectorAll(".loader-img")
+        loaderImg.forEach(loader => loader.style.opacity = 1)
+        document.querySelectorAll(".img-users > img").forEach((img, i) => {
+            img.style.opacity = 0
+            img.addEventListener("load", () => {
+                loaderImg[i].style.opacity = 0
+                img.style.opacity = 1
+            })
+        })
+
         document.querySelectorAll(".users").forEach((user, i) => {
             user.addEventListener("click", () => {
-                const index = user.getAttribute("data-index"); 
-                telaPrincipal.style.display = "none"; 
-                telaMostrarUser.style.display = "block"; 
+                const index = user.getAttribute("data-index");
+                telaPrincipal.style.display = "none";
+                telaMostrarUser.style.display = "block";
                 mostrarUser(res.data[index].username);
             });
         });
@@ -47,5 +58,5 @@ function sairConta() {
     navSemConta.style.display = "block";
     localStorage.setItem("email", "")
     localStorage.setItem("password", "")
-    username = ""
+    usernameVar = ""
 }
